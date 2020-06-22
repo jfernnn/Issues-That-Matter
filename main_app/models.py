@@ -1,19 +1,23 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 from datetime import date
 
 # Create your models here.
 class Resource(models.Model):
     description = models.CharField(max_length=1000)
-    url = models.CharField(max_length=200)
+    url = models.CharField(max_length=300)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    up_vote = models.ForeignKey(User, on_delete=CASCADE)
-    down_vote = models.ForeignKey(User, on_delete=CASCADE)
+    up_vote = models.IntegerField(default='0')
+    down_vote = models.IntegerField(default='0')
 
     def __str__(self):
         return self.name
 
-class Comments(models.Model):
+    def get_absolute_url(self):
+        return reverse('detail', kwargs={'resource_id': self.id})
+
+class Comment(models.Model):
     content = models.TextField(max_length=1000)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.CharField(max_length=150)

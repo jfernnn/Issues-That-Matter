@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load app_filters %}
+
+<h1>Detail</h1>
+<a href="{{ resource.url }}">
+    <div id="container">
+        <p>Title: {{ resource.url|og_title }}</p>
+        <img id="image" src="{{ resource.url|og_image  }}">
+        <p>Description: {{ resource.url|og_description }}</p>
+    </div>
+</a>
+
+{% endblock %}
