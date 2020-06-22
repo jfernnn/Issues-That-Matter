@@ -11,9 +11,6 @@ class Resource(models.Model):
     up_vote = models.IntegerField(default='0')
     down_vote = models.IntegerField(default='0')
 
-    def __str__(self):
-        return self.name
-
     def get_absolute_url(self):
         return reverse('detail', kwargs={'resource_id': self.id})
 
