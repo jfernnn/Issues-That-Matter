@@ -12,7 +12,7 @@
         {% elif  resource.url|og_type == 'video.other'%}
             <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         {% endif %}
-        <p>Description: {{ resource.url|og_description }}</p>
+        <!-- <p>Description: {{ resource.url|og_description }}</p> -->
     </div>
 </a>
 
