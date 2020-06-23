@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Resources</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -14,6 +16,8 @@
             <div>
                 <ul>
                 {% if user.is_authenticated %}
+                    <li> <a href="{% url 'index' %}"> All Resources</a></li>
+                    <li> <a href="{% url 'resources_create' %}">Create A Resource</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -28,7 +32,7 @@
         {% block content %}
         {% endblock %}
     </main>
-  	<footer>
+  	<footer class="footer">
        <div>All Rights Reserved, &copy; 2020 Resources &nbsp;</div>
     </footer>
 </body>
