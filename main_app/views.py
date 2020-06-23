@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Resource, User, Comment, Topic
+from opengraph import OpenGraph
 
 # Create your views here.
 
@@ -47,3 +48,11 @@ class ResourceCreate(CreateView):
     print('thisworks!!')
     form.instance.user = self.request.user
     return super().form_valid(form)
+
+class ResourceUpdate(UpdateView):
+    model = Resource
+    fields = ['description', 'url']
+    
+class ResourceDelete(DeleteView):
+    model = Resource
+    success_url = '/resources/'
