@@ -19,7 +19,7 @@
                 {% if user.is_authenticated %}
                     <li> <a href="{% url 'index' %}"> All Resources</a></li>
                     <li> <a href="{% url 'resources_create' %}">Create A Resource</a></li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li> <a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
                     <li><a href="{% url 'login' %}">Log In</a></li>
@@ -34,7 +34,7 @@
         {% endblock %}
     </main>
   	<footer class="footer">
-       <div>All Rights Reserved, &copy; 2020 Resources &nbsp;</div>
+       <div>All Rights Reserved, &copy; 2020 Issues That Matter &nbsp;</div>
     </footer>
 </body>
 </html>

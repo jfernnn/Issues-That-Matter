@@ -10,5 +10,4 @@ urlpatterns = [
     path('resources/<int:resource_id>/', views.resources_detail, name='detail'),
     path('resources/<int:pk>/update/', views.ResourceUpdate.as_view(), name='resources_update'),
     path('resources/<int:pk>/delete/', views.ResourceDelete.as_view(), name='resources_delete'),
-    
 ]
