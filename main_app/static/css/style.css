@@ -18,6 +18,12 @@ footer {
     padding-top: 5%;
 }
 
+.card {
+    border: 2px solid rgba(211, 211, 211, .7);
+    margin: 20px 0;
+    
+}
+
 #container {
     text-align: center;
     border: 2px solid rgba(211, 211, 211, .7);
@@ -25,6 +31,7 @@ footer {
     border-bottom: 3px solid rgba(211, 211, 211, .7);
     border-left: 2px solid rgba(211, 211, 211, .7);
     border-top: 1px solid rgba(211, 211, 211, .7); */
+
 }
 
 #container:hover {

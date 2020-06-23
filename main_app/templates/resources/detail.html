@@ -11,8 +11,12 @@
             <p>Description: {{ resource.url|og_description }}</p>
         {% elif  resource.url|og_type == 'video.other'%}
             <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Description: {{ resource.url|og_description }}</p>
         {% endif %}
-        <!-- <p>Description: {{ resource.url|og_description }}</p> -->
+        {% if user == resource.user %}
+            <a href="{% url 'resources_update' resource.id %}">Edit</a>
+            <a href="{% url 'resources_delete' resource.id %}">Delete</a>
+        {% endif %}
     </div>
 </a>
 
