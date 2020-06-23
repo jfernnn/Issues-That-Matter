@@ -8,17 +8,21 @@
 {% if resources %}
     {% for resource in resources %}
         <div class="card">
-            <p>{{ resource.description }}</p>
-            <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a>
+            <div class="resource-description">
+                <p>Posted By: {{ resource.user }} </p>
+                <h3>{{ resource.description }}</h3>
+                <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a>
+            </div>
             <a class="container-a" href="{{ resource.url }}">
                 <div id="container">
                     <h3> {{ resource.url|og_title }}</h2>
                     {% if resource.url|og_type == 'article'%}
                         <img id="image" src="{{ resource.url|og_image  }}">
+                        <p>Description: {{ resource.url|og_description }}</p>
                     {% elif  resource.url|og_type == 'video.other'%}
                         <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     {% endif %}
-                    <p>Description: {{ resource.url|og_description }}</p>
+
                 </div>
             </a>
         </div>
