@@ -4,18 +4,21 @@
 <h1>Detail</h1>
 <a href="{{ resource.url }}">
     <div id="container">
-        <p>Title: {{ resource.url|og_title }}</p>
-        {% if  resource.url|og_type == 'video.other'%}
-            <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <p>Description: {{ resource.url|og_description }}</p>
-        {% else %}
-            <img id="image" src="{{ resource.url|og_image  }}">
-            <p>Description: {{ resource.url|og_description }}</p>
-        {% endif %}
-        {% if user == resource.user %}
-            <a href="{% url 'resources_update' resource.id %}">Edit</a>
-            <a href="{% url 'resources_delete' resource.id %}">Delete</a>
-        {% endif %}
+        <a href="{{ resource.url }}">
+            <div id="container">
+                <p>Title: {{ resource.og_title }}</p>
+                {% if  resource.og_type == 'video.other'%}
+                    <iframe class="iframe" src="{{ resource.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <p>Description: {{ resource.og_description}}</p>
+                {% else %}
+                    <img id="image" src="{{ resource.og_image }}">
+                    <p>Description: {{ resource.og_description }}</p>
+                {% endif %}
+                {% if user == resource.user %}
+                    <a href="{% url 'resources_update' resource.id %}">Edit</a>
+                    <a href="{% url 'resources_delete' resource.id %}">Delete</a>
+                {% endif %}
+            </div>
+        </a>
     </div>
-</a>
 {% endblock %}

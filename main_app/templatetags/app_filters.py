@@ -6,6 +6,7 @@ register = template.Library()
 @register.filter(name='og_title')
 def og_title(value):
     og = OpenGraph(value)
+    print(og)
     return og.title
 
 @register.filter(name='og_description')

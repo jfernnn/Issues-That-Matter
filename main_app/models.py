@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import JSONField
 from django.urls import reverse
 from datetime import date
 
@@ -10,6 +11,12 @@ class Resource(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     up_vote = models.IntegerField(default='0')
     down_vote = models.IntegerField(default='0')
+    og_title = models.CharField(max_length=300)
+    og_description = models.CharField(max_length=2000)
+    og_image = models.CharField(max_length=300)
+    og_type = models.CharField(max_length=200)
+    
+    
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'resource_id': self.id})
