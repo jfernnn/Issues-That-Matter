@@ -45,7 +45,11 @@ class ResourceCreate(CreateView):
   fields = ['description', 'url']
   
   def form_valid(self, form):
-    print('thisworks!!')
+    og = OpenGraph(form.instance.url)
+    form.instance.og_title = og.title
+    form.instance.og_description = og.description
+    form.instance.og_image = og.image
+    form.instance.og_type = og.type
     form.instance.user = self.request.user
     return super().form_valid(form)
 
