@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load app_filters %}
-
 <h1>Resource List</h1>
-
 {% if resources %}
     {% for resource in resources %}
         <div class="card">
@@ -12,25 +10,26 @@
                 <h3>{{ resource.description }}</h3>
                 <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a>
             </div>
-            <a class="container-a" href="{{ resource.url }}">
-                <div id="container">
-                    <h3> {{ resource.url|og_title }}</h2>
-                    {% if resource.url|og_type == 'article'%}
-                        <img id="image" src="{{ resource.url|og_image  }}">
-                        <p>Description: {{ resource.url|og_description }}</p>
-                    {% elif  resource.url|og_type == 'video.other'%}
-                        <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <p>Description: {{ resource.url|og_description }}</p>
-                    {% endif %}
-
-                </div>
-                <br>
-            </a>
+                <a href="{{ resource.url }}">
+                    <div id="container">
+                        <p>Title: {{ resource.url|og_title }}</p>
+                        {% if  resource.url|og_type == 'video.other'%}
+                            <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <p>Description: {{ resource.url|og_description }}</p>
+                        {% else %}
+                            <img id="image" src="{{ resource.url|og_image  }}">
+                            <p>Description: {{ resource.url|og_description }}</p>
+                        {% endif %}
+                        {% if user == resource.user %}
+                            <a href="{% url 'resources_update' resource.id %}">Edit</a>
+                            <a href="{% url 'resources_delete' resource.id %}">Delete</a>
+                        {% endif %}
+                    </div>
+                </a>
             <a href="{% url 'detail' resource.id %}">
                 <button>Details</button>
             </a>
         </div>
     {% endfor %}
 {% endif %}
-
 {% endblock %}
