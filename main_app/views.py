@@ -19,7 +19,6 @@ def resources_index(request):
 
 def resources_detail(request, resource_id):
   resource = Resource.objects.get(id=resource_id)
-
   return render(request, 'resources/detail.html', {'resource': resource})
 
 def signup(request):

@@ -8,10 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <title>Resources</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:ital,wght@0,300;0,700;1,300" rel="stylesheet">
 </head>
 <body>
     <header>
         <nav>
+<<<<<<< HEAD
             <div class="dropdown">
                 <button id="menu-btn" class="dropbtn">Menu</button>
                 <div class="dropdown-content">
@@ -24,6 +27,20 @@
                         <a href="{% url 'login' %}">Log In</a>
                     {% endif %}
                 </div>
+=======
+            <div>
+                <ul>
+                {% if user.is_authenticated %}
+                    <li> <a href="{% url 'index' %}"> All Resources</a></li>
+                    <li> <a href="{% url 'resources_create' %}">Create A Resource</a></li>
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                {% else %}
+                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a href="{% url 'login' %}">Log In</a></li>
+                {% endif %}
+                </ul>
+
+>>>>>>> master
             </div>
         </nav>
     </header>
@@ -31,8 +48,13 @@
         {% block content %}
         {% endblock %}
     </main>
+<<<<<<< HEAD
   	<footer>
        <div>All Rights Reserved, &copy; 2020 Issues That Matter &nbsp;</div>
+=======
+  	<footer class="footer">
+       <div>All Rights Reserved, &copy; 2020 Resources &nbsp;</div>
+>>>>>>> master
     </footer>
 </body>
 </html>

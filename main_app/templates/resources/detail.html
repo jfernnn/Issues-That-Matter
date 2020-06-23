@@ -3,6 +3,7 @@
 {% load app_filters %}
 
 <h1>Detail</h1>
+<<<<<<< HEAD
 <div class="card">
     <div class="resource-description">
         <p>Posted By: {{ resource.user }} </p>
@@ -22,6 +23,20 @@
         </div>
     </a>
 </div>
+=======
+<a href="{{ resource.url }}">
+    <div id="container">
+        <p>Title: {{ resource.url|og_title }}</p>
+        {% if resource.url|og_type == 'article'%}
+            <img id="image" src="{{ resource.url|og_image  }}">
+            <p>Description: {{ resource.url|og_description }}</p>
+        {% elif  resource.url|og_type == 'video.other'%}
+            <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% endif %}
+        <p>Description: {{ resource.url|og_description }}</p>
+    </div>
+</a>
+>>>>>>> master
 
 {% endblock %}
 
