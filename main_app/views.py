@@ -48,3 +48,11 @@ class ResourceCreate(CreateView):
     print('thisworks!!')
     form.instance.user = self.request.user
     return super().form_valid(form)
+
+class ResourceUpdate(UpdateView):
+    model = Resource
+    fields = ['description', 'url']
+    
+class ResourceDelete(DeleteView):
+    model = Resource
+    success_url = '/resources/'

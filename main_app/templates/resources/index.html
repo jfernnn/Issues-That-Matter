@@ -4,7 +4,6 @@
 
 <h1>Resource List</h1>
 
-<p> signed in </p>
 {% if resources %}
     {% for resource in resources %}
         <div class="card">
@@ -21,30 +20,17 @@
                         <p>Description: {{ resource.url|og_description }}</p>
                     {% elif  resource.url|og_type == 'video.other'%}
                         <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        <p>Description: {{ resource.url|og_description }}</p>
                     {% endif %}
 
-<<<<<<< HEAD
                 </div>
+                <br>
+            </a>
+            <a href="{% url 'detail' resource.id %}">
+                <button>Details</button>
             </a>
         </div>
     {% endfor %}
 {% endif %}
-=======
-{% for resource in resources %}
-    <a href="{{ resource.url }}">
-        <div id="container">
-            <p>Title: {{ resource.url|og_title }}</p>
-            {% if resource.url|og_type == 'article'%}
-                <img id="image" src="{{ resource.url|og_image  }}">
-                <p>Description: {{ resource.url|og_description }}</p>
-            {% elif  resource.url|og_type == 'video.other'%}
-                <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            {% endif %}            
-            <p>Description: {{ resource.url|og_description }}</p>
-        </div>
-    </a>
-    <br>
-{% endfor %}
->>>>>>> master
 
 {% endblock %}
