@@ -1,0 +1,52 @@
+header {
+    text-align: left;
+}
+
+body {
+    /* text-align: center; */
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-weight: 300;
+}
+
+nav {
+    display: flex;
+    float: right;
+}
+
+footer {
+    text-align: center;
+    padding-top: 5%;
+}
+
+#container {
+    text-align: center;
+    border: 2px solid rgba(211, 211, 211, .7);
+    /* border-right: 4px solid rgba(211, 211, 211, .7);
+    border-bottom: 3px solid rgba(211, 211, 211, .7);
+    border-left: 2px solid rgba(211, 211, 211, .7);
+    border-top: 1px solid rgba(211, 211, 211, .7); */
+}
+
+#container:hover {
+    background-color: rgba(211, 211, 211, .45);
+}
+
+label {
+    text-align: center;
+}
+
+p {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    width: 70%;
+}
+
+form > table {
+    text-align: center;
+}
