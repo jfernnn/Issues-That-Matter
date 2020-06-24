@@ -33,7 +33,7 @@
 <h2>Add Comment</h2>
     <form action="{% url 'add_comment' resource.id %}" method="post">
         {% csrf_token %}
-        {{ comment_form.as_p }}
+        {{ form.as_table }}
             <input type="submit" class="btn" value="Add Comment">
     </form>
     {% if comments %}

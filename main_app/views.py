@@ -6,6 +6,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .models import Resource, User, Comment, Topic
+from datetime import date
+from .forms import CommentForm
 from opengraph import OpenGraph
 
 # Create your views here.
@@ -20,14 +22,18 @@ def resources_index(request):
 
 def resources_detail(request, resource_id):
   resource = Resource.objects.get(id=resource_id)
+  form = CommentForm
   comments = Comment.objects.filter(resource=resource_id)
-  return render(request, 'resources/detail.html', {'resource': resource, 'comments': comments})
+  return render(request, 'resources/detail.html', {'resource': resource, 'comments': comments, 'form': form})
 
 def add_comment(request, resource_id):
   form = CommentForm(request.POST)
+  
   if form.is_valid():
     new_comment = form.save(commit=False)
     new_comment.resource_id = resource_id
+    new_comment.user = request.user
+    new_comment.date = date.today()
     new_comment.save()
   return redirect('detail', resource_id=resource_id)
 
@@ -56,6 +62,7 @@ class ResourceCreate(CreateView):
   
   def form_valid(self, form):
     og = OpenGraph(form.instance.url)
+    print(og)
     form.instance.og_title = og.title
     form.instance.og_description = og.description
     form.instance.og_image = og.image
