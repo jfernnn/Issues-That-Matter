@@ -5,6 +5,15 @@ from django.urls import reverse
 from datetime import date
 
 # Create your models here.
+class Topic(models.Model):
+    name = models.CharField(max_length=50)
+
+    def get_absolute_url(self):
+        return redirect('topics_index')
+
+    def __str__(self):
+        return self.name
+
 class Resource(models.Model):
     description = models.CharField(max_length=1000)
     url = models.CharField(max_length=300)
@@ -15,8 +24,7 @@ class Resource(models.Model):
     og_description = models.CharField(max_length=2000)
     og_image = models.CharField(max_length=300)
     og_type = models.CharField(max_length=200)
-    
-    
+    topics = models.ManyToManyField(Topic)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'resource_id': self.id})
@@ -25,13 +33,12 @@ class Comment(models.Model):
     content = models.TextField(max_length=1000)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.CharField(max_length=150)
-        # get_user(request)
-
-class Topic(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.name
+    # created_on = models.DateTimeField(auto_now_add=True)
+    date = models.DateField('comment date')
+    # class Meta:
+    #     ordering = ['-created_on']
+    class Meta:
+        ordering = ['-date']
 
 class Photo(models.Model):
   url = models.CharField(max_length=200)
