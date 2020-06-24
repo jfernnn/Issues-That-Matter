@@ -14,7 +14,7 @@
                     <div id="container">
                         <p>Title: {{ resource.og_title }}</p>
                         {% if  resource.og_type == 'video.other'%}
-                            <iframe class="iframe" src="{{ resource.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <p>Description: {{ resource.og_description}}</p>
                         {% else %}
                             <img id="image" src="{{ resource.og_image }}">
