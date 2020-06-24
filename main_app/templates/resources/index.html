@@ -14,20 +14,21 @@
     {% for resource in resources %}
         <div class="card">
             <div class="resource-description">
-                <p>Posted By: {{ resource.user }} </p>
                 <h3>{{ resource.description }}</h3>
-                <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a>
+                <p>Posted By: {{ resource.user }} </p>
+                <!-- <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a> -->
             </div>
-                <a href="{{ resource.url }}">
+                <a class="a" href="{{ resource.url }}">
                     <div id="container">
                         <p>Title: {{ resource.og_title }}</p>
-                        {% if  resource.og_type == 'video.other'%}
-                            <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            <p>Description: {{ resource.og_description}}</p>
-                        {% else %}
-                            <img id="image" src="{{ resource.og_image }}">
-                            <p>Description: {{ resource.og_description }}</p>
-                        {% endif %}
+                        <div class="image-container">
+                            {% if  resource.og_type == 'video.other'%}
+                                <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            {% else %}
+                                <img id="image" src="{{ resource.og_image }}">
+                            {% endif %}
+                        </div>
+                    <p>Description: {{ resource.og_description }}</p>
                     </div>
                 </a>
             <a href="{% url 'detail' resource.id %}">
