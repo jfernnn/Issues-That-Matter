@@ -15,7 +15,8 @@ def home(request):
 
 def resources_index(request):
   resources = Resource.objects.all()
-  return render(request, 'resources/index.html', {'resources': resources})
+  topics = Topic.objects.all()
+  return render(request, 'resources/index.html', {'resources': resources, 'topics': topics})
 
 def resources_detail(request, resource_id):
   resource = Resource.objects.get(id=resource_id)
@@ -60,3 +61,11 @@ class ResourceUpdate(UpdateView):
 class ResourceDelete(DeleteView):
     model = Resource
     success_url = '/resources/'
+
+class TopicCreate(CreateView):
+  model = Topic
+  fields = ['name']
+
+class TopicDelete(DeleteView):
+  model = Topic
+  success_url = '/resources/'
