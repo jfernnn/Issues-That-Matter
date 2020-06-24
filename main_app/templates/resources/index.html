@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load app_filters %}
+{% if topics %}
+    <h2>Topic List</h2>
+    <ul>
+        {% for topic in topics %}
+            <li> {{ topic.name }} <a href="{% url 'topics_delete' topic.id %}">X</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}
 <h1>Resource List</h1>
 {% if resources %}
     {% for resource in resources %}
@@ -14,7 +22,7 @@
                     <div id="container">
                         <p>Title: {{ resource.og_title }}</p>
                         {% if  resource.og_type == 'video.other'%}
-                            <iframe class="iframe" src="{{ resource.url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             <p>Description: {{ resource.og_description}}</p>
                         {% else %}
                             <img id="image" src="{{ resource.og_image }}">
