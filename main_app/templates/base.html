@@ -14,19 +14,19 @@
 <body>
     <header>
         <nav>
-            <div>
-                <ul>
+            <div class="dropdown">
+                <button class="dropbtn">Menu</button>
+                <div class="dropdown-content">
                 {% if user.is_authenticated %}
-                    <li> <a href="{% url 'index' %}"> All Resources</a></li>
-                    <li> <a href="{% url 'resources_create' %}">Create A Resource</a></li>
-                    <li> <a href="{% url 'logout' %}">Log Out</a></li>
-                    <li> <a href="{% url 'topics_create' %}">Add Topic</a></li>
+                    <a href="{% url 'index' %}"> All Resources</a>
+                    <a href="{% url 'resources_create' %}">Create A Resource</a>
+                    <a href="{% url 'logout' %}">Log Out</a>
+                    <a href="{% url 'topics_create' %}">Add Topic</a>
                 {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                   <a href="{% url 'signup' %}">Sign Up</a>
+                   <a href="{% url 'login' %}">Log In</a>
                 {% endif %}
-                </ul>
-
+                </div>
             </div>
         </nav>
     </header>

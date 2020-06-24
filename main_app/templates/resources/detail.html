@@ -1,24 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load app_filters %}
-<h1>Detail</h1>
-<a href="{{ resource.url }}">
-    <div id="container">
-        <a href="{{ resource.url }}">
+<h1>Detail</h1>   
+    <div class="card">
+        <div class="resource-description">
+            <h3>{{ resource.description }}</h3>
+            <p>Posted By: {{ resource.user }} </p>
+            <!-- <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a> -->
+        </div>
+        <a class="a" href="{{ resource.url }}">
             <div id="container">
                 <p>Title: {{ resource.og_title }}</p>
-                {% if  resource.og_type == 'video.other'%}
+                <div class="image-container">
+                    {% if  resource.og_type == 'video.other'%}
                     <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    <p>Description: {{ resource.og_description}}</p>
-                {% else %}
+                    {% else %}
                     <img id="image" src="{{ resource.og_image }}">
-                    <p>Description: {{ resource.og_description }}</p>
-                {% endif %}
-                {% if user == resource.user %}
-                    <a href="{% url 'resources_update' resource.id %}">Edit</a>
-                    <a href="{% url 'resources_delete' resource.id %}">Delete</a>
-                {% endif %}
-            </div>
-        </a>
-    </div>
+                    {% endif %}
+                </div>
+            <p>Description: {{ resource.og_description }}</p>
+            
+        </div>
+    </a>
+    {% if user == resource.user %}
+        <div class="edit-delete">
+            <a href="{% url 'resources_update' resource.id %}"><button> Edit</button></a>
+            <a href="{% url 'resources_delete' resource.id %}"><button>Delete</button></a>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
