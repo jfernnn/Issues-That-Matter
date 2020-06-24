@@ -20,7 +20,16 @@ def resources_index(request):
 
 def resources_detail(request, resource_id):
   resource = Resource.objects.get(id=resource_id)
-  return render(request, 'resources/detail.html', {'resource': resource})
+  comments = Comment.objects.filter(resource=resource_id)
+  return render(request, 'resources/detail.html', {'resource': resource, 'comments': comments})
+
+def add_comment(request, resource_id):
+  form = CommentForm(request.POST)
+  if form.is_valid():
+    new_comment = form.save(commit=False)
+    new_comment.resource_id = resource_id
+    new_comment.save()
+  return redirect('detail', resource_id=resource_id)
 
 def signup(request):
   error_message = ''
@@ -69,3 +78,7 @@ class TopicCreate(CreateView):
 class TopicDelete(DeleteView):
   model = Topic
   success_url = '/resources/'
+
+def topics_index(request):
+  topics = Topic.objects.all()
+  return render(request, 'resources/topics_index.html', {'topics': topics})
