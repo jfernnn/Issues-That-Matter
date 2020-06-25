@@ -85,6 +85,7 @@
     {% endif %}
 </div>
 
+<!-- to here -->
 <h2>Add Comment</h2>
     <form action="{% url 'add_comment' resource.id %}" method="post">
         {% csrf_token %}

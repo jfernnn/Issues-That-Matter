@@ -208,6 +208,13 @@ ul {
 
 img {
     width: 70%;
+    justify-content: center;
+}
+
+.pics img {
+    border-radius: 10%;
+    display: inline;
+    width: 25%;
 }
 
 .topic-page {
@@ -287,3 +294,4 @@ img {
 .topic-btn:hover {
     background-color: rgba(235, 235, 235, 0.856);
 }
+

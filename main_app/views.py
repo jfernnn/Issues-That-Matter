@@ -77,7 +77,7 @@ class ResourceCreate(CreateView):
     form.instance.og_type = '' if not 'type' in og else og.type
     form.instance.user = self.request.user
     return super().form_valid(form)
-
+    
 class ResourceUpdate(UpdateView):
     model = Resource
     fields = ['description', 'url']
