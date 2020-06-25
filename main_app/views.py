@@ -69,14 +69,12 @@ def signup(request):
 class ResourceCreate(CreateView):
   model = Resource
   fields = ['description', 'url']
-  
   def form_valid(self, form):
     og = OpenGraph(form.instance.url)
-    print(og)
-    form.instance.og_title = og.title
-    form.instance.og_description = og.description
-    form.instance.og_image = og.image
-    form.instance.og_type = og.type
+    form.instance.og_title = og.title if 'title' in og else ''
+    form.instance.og_description = og.description if 'description' in og else ''
+    form.instance.og_image = og.image if 'image' in og else ''
+    form.instance.og_type = '' if not 'type' in og else og.type
     form.instance.user = self.request.user
     return super().form_valid(form)
 
