@@ -34,20 +34,20 @@ header {
     background-color: white;
     position: fixed;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
 }
 
-nav {
+nav { 
     display: flex;
     float: right;
-    /* padding-right: 5%; */
-} 
-/* 
+    justify-content: space-between; 
+    width: 100%;
+}  
+
 .search-bar {
+    background-color: pink;
     display: flex;
-    justify-content: flex-start;
-} */
+    float: left;
+} 
 
 /* Dropdown Button */
 .dropbtn {
