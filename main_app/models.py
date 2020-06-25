@@ -2,14 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.urls import reverse
+from django.shortcuts import redirect
 from datetime import date
+
 
 # Create your models here.
 class Topic(models.Model):
     name = models.CharField(max_length=50)
 
     def get_absolute_url(self):
-        return redirect('topics_index')
+        return redirect('index/')
 
     def __str__(self):
         return self.name
@@ -24,7 +26,7 @@ class Resource(models.Model):
     og_description = models.CharField(max_length=2000)
     og_image = models.CharField(max_length=300)
     og_type = models.CharField(max_length=200)
-    topics = models.ManyToManyField(Topic)
+    topic = models.ManyToManyField(Topic)
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'resource_id': self.id})

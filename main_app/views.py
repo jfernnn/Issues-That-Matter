@@ -20,11 +20,20 @@ def resources_index(request):
   topics = Topic.objects.all()
   return render(request, 'resources/index.html', {'resources': resources, 'topics': topics})
 
+def assoc_topic(request, resource_id, topic_id):
+  Resource.objects.get(id=resource_id).topic.add(topic_id)
+  return redirect('detail', resource_id=resource_id)
+
+def unassoc_topic(request, resource_id, topic_id):
+  Resource.objects.get(id=resource_id).topic.remove(topic_id)
+  return redirect('detail', resource_id=resource_id)
+
 def resources_detail(request, resource_id):
   resource = Resource.objects.get(id=resource_id)
+  topics = Topic.objects.exclude(id__in = resource.topic.all().values_list('id'))
   form = CommentForm
   comments = Comment.objects.filter(resource=resource_id)
-  return render(request, 'resources/detail.html', {'resource': resource, 'comments': comments, 'form': form})
+  return render(request, 'resources/detail.html', {'resource': resource, 'comments': comments, 'form': form, 'topics': topics})
 
 def add_comment(request, resource_id):
   form = CommentForm(request.POST)
@@ -81,6 +90,14 @@ class ResourceDelete(DeleteView):
 class TopicCreate(CreateView):
   model = Topic
   fields = ['name']
+  success_url = '/resources/'
+
+  def get_context_data(self, **kwargs):
+    topics = Topic.objects.all()
+    context = super().get_context_data()
+    context['topics'] = topics
+    return context
+
 
 class TopicDelete(DeleteView):
   model = Topic
@@ -89,3 +106,8 @@ class TopicDelete(DeleteView):
 def topics_index(request):
   topics = Topic.objects.all()
   return render(request, 'resources/topics_index.html', {'topics': topics})
+
+def search(request, form):
+  search = form.instance.search
+  resources = Resource.objects.filter(topic=search)
+  return render(request, 'resources/index.html', {})

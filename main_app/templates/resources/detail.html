@@ -1,7 +1,56 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load app_filters %}
-<h1>Detail</h1>   
+<h1>Detail</h1>
+{% if user == resource.user %}
+<div class="row">
+    <div class="col s6">
+      <h3>Resource Topics</h3>
+      {% if resource.topics.count %}
+        {% for topic in resource.topics.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                {{ topic.name }}
+              </span>
+            </div>
+            <div class="card-action">
+              <form action="{% url 'unassoc_topic' resource.id topic.id %}" method="post">
+                  {% csrf_token %}
+                <button type="submit" class="btn">Remove</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>No Topics :(</h5>
+      {% endif %}
+    </div>
+    <!-- Available topics will come after this line -->
+    <div class="col s6">
+      <h3>Available topics</h3>
+      {% if topics.count %}
+        {% for topic in topics.all %}
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">
+                {{ topic.name }}
+              </span>
+            </div>
+            <div class="card-action">
+              <form action="{% url 'assoc_topic' resource.id topic.id %}" method="post">
+                  {% csrf_token %}
+                <button type="submit" class="btn">Add</button>
+              </form>
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <h5>{{resource.name}} Already Has All topics Available</h5>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
     <div class="card">
         <div class="resource-description">
             <h3>{{ resource.description }}</h3>
