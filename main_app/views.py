@@ -93,6 +93,10 @@ class TopicCreate(CreateView):
   fields = ['name']
   success_url = '/resources/'
 
+  def form_valid(self, form):
+    name = name.lower()
+    form.instance.name
+  
   def get_context_data(self, **kwargs):
     topics = Topic.objects.all()
     context = super().get_context_data()
