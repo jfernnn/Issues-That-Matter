@@ -3,7 +3,8 @@
 {% load app_filters %}
 
 <div>
-    <form action="" method="GET">
+    <form action="{% url 'search' %}" method="POST">
+        {% csrf_token %}
         <input type="text" name="search">
         <button type="submit">Enter</button>
     </form>
