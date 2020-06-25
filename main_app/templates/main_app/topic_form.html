@@ -2,13 +2,16 @@
 
 {% block content %}
 
+<div class="topic-page">
 {% if topics %}
-    <h2>Topic List</h2>
+<div class="topic-column">
+  <h2>Topic List</h2>
     <ul>
         {% for topic in topics %}
-            <li> {{ topic.name }} </li>
+            <li> {{ topic.name|title }} </li>
         {% endfor %}
     </ul>
+  </div>
 {% endif %}
 
 <div class="form">
@@ -27,5 +30,6 @@
     </table>
     <input type="submit" value="Submit!" class="btn">
   </form>
+</div>
 </div>
 {% endblock %}
