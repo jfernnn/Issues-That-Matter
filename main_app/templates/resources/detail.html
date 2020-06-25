@@ -38,8 +38,9 @@
     </form>
     {% if comments %}
     {% for comment in comments %}
-        <p>{{ comment.content }}</p>
         <p>Posted By: {{ comment.user }}</p>
+        <p>Date: {{ comment.date }}</p>
+        <p>{{ comment.content }}</p>
         {% endfor %}
     {% else %}
         <p>Add a comment!</p>
