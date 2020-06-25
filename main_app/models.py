@@ -2,7 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.urls import reverse
+from django.shortcuts import redirect
 from datetime import date
+
 
 # Create your models here.
 class Topic(models.Model):
