@@ -31,9 +31,11 @@ main {
 
 header {
     grid-area: header;
-    background-color: lightblue;
+    background-color: white;
     position: fixed;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 nav {
@@ -41,7 +43,11 @@ nav {
     float: right;
     /* padding-right: 5%; */
 } 
-
+/* 
+.search-bar {
+    display: flex;
+    justify-content: flex-start;
+} */
 
 /* Dropdown Button */
 .dropbtn {
@@ -50,7 +56,6 @@ nav {
     padding: 16px;
     font-size: 16px;
     border: none;
-    
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -96,33 +101,24 @@ nav {
 }
 
 
-
-
-
-
-
 .image-container {
     display: flex;
     justify-content: center;
 }
 
-
-
-
-
-
-
-
-
 footer {
-    padding-top: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding-top: 3vh; */
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-    text-align: center;
+    /* text-align: center; */
     grid-area: footer;
-    background-color: lightgreen;
+    background-color: white;
+    /* padding-bottom: ; */
 }
 
 .card {
