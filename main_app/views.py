@@ -95,7 +95,7 @@ class TopicCreate(CreateView):
     form.instance.name = form.instance.name.lower()
     print(form.instance, '<----form instance')
     return super().form_valid(form)
-
+  
   def get_context_data(self, **kwargs):
     topics = Topic.objects.all()
     context = super().get_context_data()
@@ -125,5 +125,3 @@ def search(request):
           id_list.append(item)
     resources = Resource.objects.filter(topic__in=id_list).distinct()
     return render(request, 'resources/index.html', {'resources': resources})
-
-  

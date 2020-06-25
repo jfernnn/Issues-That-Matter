@@ -3,88 +3,86 @@
 {% load app_filters %}
 <h1>Detail</h1>
 {% if user == resource.user %}
-<div class="row">
-    <div class="col s6">
-      <h3>Resource Topics</h3>
+  <div>
+    <h3>Resource Topics</h3>
+    <hr><br>
+    <div class="detail-topics">
       {% if resource.topic.count %}
         {% for topic in resource.topic.all %}
-          <div class="card">
-            <div class="card-content">
-              <span class="card-title">
-                {{ topic.name|title }}
-              </span>
-            </div>
-            <div class="card-action">
+            <div class="each-topic">
               <form action="{% url 'unassoc_topic' resource.id topic.id %}" method="post">
-                  {% csrf_token %}
-                <button type="submit" class="btn">Remove</button>
+                {% csrf_token %}
+                <button type="submit" class="topic-btn"><span id="topic-title">{{ topic.name|title }}</span><hr>Remove</button>
               </form>
             </div>
-          </div>
         {% endfor %}
       {% else %}
         <h5>No Topics :(</h5>
       {% endif %}
     </div>
     <!-- Available topics will come after this line -->
-    <div class="col s6">
-      <h3>Available topics</h3>
+    <br><br>
+    <h3>Available topics</h3>
+    <hr><br>
+    <div class="detail-topics">
       {% if topics.count %}
         {% for topic in topics.all %}
-          <div class="card">
-            <div class="card-content">
-              <span class="card-title">
-                {{ topic.name }}
-              </span>
-            </div>
-            <div class="card-action">
-              <form action="{% url 'assoc_topic' resource.id topic.id %}" method="post">
-                  {% csrf_token %}
-                <button type="submit" class="btn">Add</button>
-              </form>
-            </div>
-          </div>
+        <div class="each-topic">
+            <form action="{% url 'assoc_topic' resource.id topic.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="topic-btn"><span id="topic-title">{{ topic.name|title }}</span><hr>Add</button>
+            </form>
+        </div>
         {% endfor %}
       {% else %}
-        <h5>{{resource.name}} Already Has All topics Available</h5>
+        <h5>{{resource.name}} Already Has All Topics Available</h5>
       {% endif %}
     </div>
   </div>
+{% else %}
+    {% if resource.topic.count %}
+    <h3>Resource Topics</h3>
+        {% for topic in resource.topic.all %}
+            <div>
+                {{ topic.name|title }}
+            </div>
+        {% endfor %}
+    {% endif %}
 {% endif %}
-<!-- here -->
+
 <div class="card">
-  <div class="resource-description">
-      <h3>{{ resource.description }}</h3>
-      <p>Posted By: {{ resource.user }} </p>
-      <!-- <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a> -->
-  </div>
-  {% if resource.og_title == '' %}
-    <div class="image-container">
-      <p>{{ resource.url }}</p>
+    <div class="resource-description">
+        <h3>{{ resource.description }}</h3>
+        <p>Posted By: {{ resource.user }} </p>
+        <!-- <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a> -->
     </div>
-  {% else %}
-    <a class="a" href="{{ resource.url }}">
+    {% if resource.og_title == '' %}
+      <div class="image-container">
+        <p>{{ resource.url }}</p>
+      </div>
+    {% else %}
+      <a class="a" href="{{ resource.url }}">
         <div id="container">
-        {% if resource.og_title %}
-          <p>Title: {{ resource.og_title }}</p>
-          <div class="image-container">
-            {% if 'youtube' in resource.url %}
-              <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            {% else %}
-              <img id="image" src="{{ resource.og_image }}">
-            {% endif %}
-          </div>
-          <p>Description: {{ resource.og_description }}</p>
-        {% endif %}
-    </div>
-    </a>
-  {% endif %}
-{% if user == resource.user %}
-  <div class="edit-delete">
-      <a href="{% url 'resources_update' resource.id %}"><button> Edit</button></a>
-      <a href="{% url 'resources_delete' resource.id %}"><button>Delete</button></a>
-  </div>
-{% endif %}
+          {% if resource.og_title %}
+            <p>Title: {{ resource.og_title }}</p>
+            <div class="image-container">
+              {% if 'youtube' in resource.url %}
+                <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              {% else %}
+                <img id="image" src="{{ resource.og_image }}">
+              {% endif %}
+            </div>
+            <p>Description: {{ resource.og_description }}</p>
+          {% endif %}
+        </div>
+      </a>
+    {% endif %}
+    {% if user == resource.user %}
+      <div class="edit-delete">
+        <a href="{% url 'resources_update' resource.id %}"><button> Edit</button></a>
+        <a href="{% url 'resources_delete' resource.id %}"><button>Delete</button></a>
+      </div>
+    {% endif %}
 </div>
 
 <!-- to here -->
@@ -95,11 +93,10 @@
             <input type="submit" class="btn" value="Add Comment">
     </form>
     {% if comments %}
-    {% for comment in comments %}
-        <p>Posted By: {{ comment.user }}</p>
-        <p>Date: {{ comment.date }}</p>
-        <p>{{ comment.content }}</p>
-        {% endfor %}
+      {% for comment in comments %}
+        <p style="font-size: 20px; font-weight: bold;">{{ comment.content }}</p>
+        <p>-Posted By {{ comment.user }} on {{ comment.date }}</p>
+      {% endfor %}
     {% else %}
         <p>Add a comment!</p>
     {% endif %}
