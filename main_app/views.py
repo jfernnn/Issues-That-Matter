@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
+from django.db.models import Q
 # from django.contrib.auth.decorators import login_required
 # from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
@@ -110,6 +111,11 @@ def topics_index(request):
 def search(request):
   if request.method == 'POST':
     search = request.POST.get('search', None).lower()
-    topic = Topic.objects.get(name=search)
-    resources = Topic.objects.get(id=topic.id).resource_set.all()
+    search_list = search.replace(' ', '').split(',')
+    id_list = []
+    # resources =[]
+    for item in search_list:
+      topic = Topic.objects.get(name=item)
+      id_list.append(topic.id)
+    resources = Resource.objects.filter(topic__in=id_list)
     return render(request, 'resources/index.html', {'resources': resources})
