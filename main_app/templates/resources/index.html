@@ -2,16 +2,8 @@
 {% block content %}
 {% load app_filters %}
 
-<div>
-    <form action="{% url 'search' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" name="search">
-        <button type="submit">Enter</button>
-    </form>
-</div>
-
 <h1>Resource List</h1>
-{% if resources %}
+{% if resources|length > 0 %}
     {% for resource in resources %}
         <div class="card">
             <div class="resource-description">
