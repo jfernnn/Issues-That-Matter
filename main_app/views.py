@@ -107,7 +107,9 @@ def topics_index(request):
   topics = Topic.objects.all()
   return render(request, 'resources/topics_index.html', {'topics': topics})
 
-def search(request, form):
-  search = form.instance.search
-  resources = Resource.objects.filter(topic=search)
-  return render(request, 'resources/index.html', {})
+def search(request):
+  if request.method == 'POST':
+    search = request.POST.get('search', None).lower()
+    topic = Topic.objects.get(name=search)
+    resources = Topic.objects.get(id=topic.id).resource_set.all()
+    return render(request, 'resources/index.html', {'resources': resources})
