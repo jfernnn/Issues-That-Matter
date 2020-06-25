@@ -14,7 +14,7 @@
 <body>
     <header>
         <nav>
-            <div>
+            <div class="search-bar">
                 <form action="{% url 'search' %}" method="POST">
                     {% csrf_token %}
                     <p>Search By Topic <input type="text" placeholder='ie. BLM, rights' name="search">
