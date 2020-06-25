@@ -92,6 +92,11 @@ class TopicCreate(CreateView):
   model = Topic
   fields = ['name']
   success_url = '/resources/'
+  
+  def form_valid(self, form):
+    form.instance.name = form.instance.name.lower()
+    print(form.instance, '<----form instance')
+    return super().form_valid(form)
 
   def get_context_data(self, **kwargs):
     topics = Topic.objects.all()
@@ -115,7 +120,12 @@ def search(request):
     id_list = []
     # resources =[]
     for item in search_list:
-      topic = Topic.objects.get(name=item)
-      id_list.append(topic.id)
-    resources = Resource.objects.filter(topic__in=id_list)
+
+      topic = Topic.objects.filter(name=item.lower()).values_list('id', flat=True)
+      if topic.exists():
+        for item in topic:
+          id_list.append(item)
+    resources = Resource.objects.filter(topic__in=id_list).distinct()
     return render(request, 'resources/index.html', {'resources': resources})
+
+  

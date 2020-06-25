@@ -14,14 +14,22 @@
 <body>
     <header>
         <nav>
+            <div>
+                <form action="{% url 'search' %}" method="POST">
+                    {% csrf_token %}
+                    <p>Search By Topic <input type="text" placeholder='ie. BLM, rights' name="search">
+                        <button type="submit">Enter</button>
+                    </p>
+                </form>
+            </div>
             <div class="dropdown">
                 <button class="dropbtn">Menu</button>
                 <div class="dropdown-content">
                 {% if user.is_authenticated %}
                     <a href="{% url 'index' %}"> All Resources</a>
-                    <a href="{% url 'resources_create' %}">Create A Resource</a>
-                    <a href="{% url 'logout' %}">Log Out</a>
+                    <a href="{% url 'resources_create' %}">Add A Resource</a>
                     <a href="{% url 'topics_create' %}">Add Topic</a>
+                    <a href="{% url 'logout' %}">Log Out</a>
                 {% else %}
                    <a href="{% url 'signup' %}">Sign Up</a>
                    <a href="{% url 'login' %}">Log In</a>
