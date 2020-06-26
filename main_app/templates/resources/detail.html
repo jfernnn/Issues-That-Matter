@@ -55,7 +55,7 @@
     </div>
     {% if resource.og_title == '' %}
       <div class="image-container">
-        <p style="font-size:20px; text-align:center;">{{ resource.url }}</p>
+        <a href="{{ resource.url }}"><p style="font-size:20px; text-align:center;">{{ resource.url }}</p></a>
       </div>
     {% else %}
       <a class="a" href="{{ resource.url }}">
