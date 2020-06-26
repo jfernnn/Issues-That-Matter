@@ -89,13 +89,15 @@
 <h2>Add Comment</h2>
     <form action="{% url 'add_comment' resource.id %}" method="post">
         {% csrf_token %}
-        {{ form.as_table }}
+        {{ form.as_p }}
             <input type="submit" class="btn" value="Add Comment">
     </form>
     {% if comments %}
       {% for comment in comments %}
-        <p style="font-size: 20px; font-weight: bold;">{{ comment.content }}</p>
-        <p>-Posted By {{ comment.user }} on {{ comment.date }}</p>
+        <div class="comment-card" style="{{ comment.id|color_change }}">
+          <p style="font-weight: bold; text-align: left;">{{ comment.comment }}</p>
+          <p style="font-size: 20px;">-Posted By {{ comment.user }} on {{ comment.date }}</p>
+        </div>
       {% endfor %}
     {% else %}
         <p>Add a comment!</p>

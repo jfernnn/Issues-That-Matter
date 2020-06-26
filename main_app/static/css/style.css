@@ -45,7 +45,7 @@ nav {
     width: 100%;
 }  
 
-button {
+button, .btn {
     font-size: 2vh;
     border: none;
     background-color: rgba(211, 211, 211, 1);
@@ -135,6 +135,7 @@ input ::placeholder {
 .image-container {
     display: flex;
     justify-content: center;
+    height: 50vh;
 }
 
 footer {
@@ -255,7 +256,7 @@ img {
         grid-template-areas: 
         " . form topic";
     }
-    .form-container {
+    .resource-form-container {
         width: 100%;
         height: 100%;
         display: flex;
@@ -270,14 +271,14 @@ img {
 }
 
 @media screen and (min-width: 1200px) {
-    .form {
-        padding: 0;
-        margin-top: 10%;
-        margin-left: 30%;
-    }
+    /* #topic-form {
+        display: flex;
+        justify-content: flex-end;
+    } */
     .topic-column {
         grid-area: topic;
-        padding-left: 2vh;
+        display: flex;
+        justify-content: center;
     }
 }
 
@@ -333,3 +334,40 @@ section {
     justify-content: center;
 }
 
+#topic-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+.topic-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center; 
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
+
+#image {
+    width: 100%;
+}
+
+textarea {
+   resize: none; 
+   height: 50px;
+}
+
+.comment-card {
+    border: 2px solid rgba(211, 211, 211, .7);
+    border-radius: 2vh;
+    margin: 20px 0;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    font-size: 3vh;
+}

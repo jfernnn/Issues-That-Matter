@@ -27,12 +27,16 @@ class Resource(models.Model):
     og_image = models.CharField(max_length=300)
     og_type = models.CharField(max_length=200)
     topic = models.ManyToManyField(Topic)
+    date = models.DateField('resource date')
 
     def get_absolute_url(self):
         return reverse('detail', kwargs={'resource_id': self.id})
 
+    class Meta:
+        ordering = ['-date']
+        
 class Comment(models.Model):
-    content = models.TextField(max_length=1000)
+    comment = models.TextField(max_length=1000)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.CharField(max_length=150)
     # created_on = models.DateTimeField(auto_now_add=True)
