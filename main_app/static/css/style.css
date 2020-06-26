@@ -135,8 +135,14 @@ input ::placeholder {
 .image-container {
     display: flex;
     justify-content: center;
-    height: 50vh;
+    /* height: 50vh; */
+    flex-direction: column;
+    width: 100%;
 }
+
+/* .image-container img {
+    height: 50%;
+} */
 
 footer {
     display: flex;
@@ -196,6 +202,10 @@ footer {
     justify-content: space-between;
 }
 
+.resource-description h3 {
+    margin: 0;
+}
+
 .edit-delete {
     display: flex;
     justify-content: space-around;
@@ -219,8 +229,12 @@ ul {
 }
 
 img {
-    width: 70%;
+    /* width: 70%; */
     justify-content: center;
+}
+
+.container img {
+    /* width: 70%; */
 }
 
 .pics img {
@@ -349,17 +363,18 @@ section {
 }
 
 iframe {
-    width: 100%;
+    /* width: 100%; */
     height: 100%;
 }
 
 #image {
     width: 100%;
+    height: 100%;
 }
 
 textarea {
    resize: none; 
-   height: 50px;
+   height: 26px;
 }
 
 .comment-card {
