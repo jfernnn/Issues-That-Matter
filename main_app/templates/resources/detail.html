@@ -17,7 +17,7 @@
             </div>
         {% endfor %}
       {% else %}
-        <h5>No Topics :(</h5>
+        <h5>Add A Topic</h5>
       {% endif %}
     </div>
     <!-- Available topics will come after this line -->
@@ -58,7 +58,7 @@
     </div>
     {% if resource.og_title == '' %}
       <div class="image-container">
-        <p>{{ resource.url }}</p>
+        <p style="font-size:20px; text-align:center;">{{ resource.url }}</p>
       </div>
     {% else %}
       <a class="a" href="{{ resource.url }}">
@@ -66,13 +66,13 @@
           {% if resource.og_title %}
             <p>Title: {{ resource.og_title }}</p>
             <div class="image-container">
-              {% if 'youtube' in resource.url %}
+              {% if 'yout' in resource.url %}
                 <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               {% else %}
                 <img id="image" src="{{ resource.og_image }}">
+                <p>Description: {{ resource.og_description }}</p>
               {% endif %}
             </div>
-            <p>Description: {{ resource.og_description }}</p>
           {% endif %}
         </div>
       </a>
@@ -89,13 +89,15 @@
 <h2>Add Comment</h2>
     <form action="{% url 'add_comment' resource.id %}" method="post">
         {% csrf_token %}
-        {{ form.as_table }}
+        {{ form.as_p }}
             <input type="submit" class="btn" value="Add Comment">
     </form>
     {% if comments %}
       {% for comment in comments %}
-        <p style="font-size: 20px; font-weight: bold;">{{ comment.content }}</p>
-        <p>-Posted By {{ comment.user }} on {{ comment.date }}</p>
+        <div class="comment-card" style="{{ comment.id|color_change }}">
+          <p style="font-weight: bold; text-align: left;">{{ comment.comment }}</p>
+          <p style="font-size: 20px;">-Posted By {{ comment.user }} on {{ comment.date }}</p>
+        </div>
       {% endfor %}
     {% else %}
         <p>Add a comment!</p>
