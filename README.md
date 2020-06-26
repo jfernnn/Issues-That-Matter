@@ -12,6 +12,7 @@ Sign up as a user to start collecting and commenting on resources about the soci
 - Python
 - CSS
 - HTML
+- Open Graph
 
 ## Getting Started
 [Deployed Link](https://issues-that-matter.herokuapp.com/) <br>
