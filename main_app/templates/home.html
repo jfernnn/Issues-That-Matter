@@ -2,21 +2,25 @@
 {% block content %}
 {% load app_filters %}
 
-<h1>Issues That Matter</h1>
-
-<img src="https://i.imgur.com/8yZjDlp.png" alt="a raised black fist over a neutral background. Text over the image reads Issues That Matter">
-<h2>Our Mission</h2>
-    <p> We began a project to collect information, articles, and other resources that are relevant to social justice movements in 2020. 
-        'Issues That Matter' grew from the desire to catalog these resources and connect users with opportunities to educate themselves 
-        about the intersectionalities of their interests.</p>
-<hr>
-        <h4>“A people without the knowledge of their past history, origin and culture is like a tree without roots.” <br> - Marcus Garvey</h4>
-<hr>
+<section id="home-page">
+    <img src="https://i.imgur.com/8yZjDlp.png" alt="a raised black fist over a neutral background. Text over the image reads Issues That Matter">
+    <h2>Our Mission</h2>
+        <p id="mission"> We began a project to collect information, articles, and other resources that are relevant to social justice movements in 2020. 
+            'Issues That Matter' grew from the desire to catalog these resources and connect users with opportunities to educate themselves 
+            about the intersectionalities of their interests.</p>
+    <div class="line">
+        <hr class="about-line">
+    </div>
+        <h4>“A people without the knowledge of their past history, origin and culture is like a tree without roots.” <br><em> - Marcus Garvey</em></h4>
+    <div class="line">
+        <hr class="about-line">
+    </div>
         <h3>Who We Are</h3>
-        <p>We are three fellows of the General Assembly Software Engineering Immersive with a passion for making change and writing code. </p>
+        <p id="who-we-are">We are three fellows of the General Assembly Software Engineering Immersive with a passion for making change and writing code. </p>
         <div class="pics">
-            <img src="https://i.imgur.com/3uMEw1Z.jpg" alt="Picture of April Gonzales">
-            <img src="https://i.imgur.com/AgUP1nT.jpg" alt="Picture of Jae Sohn">
-            <img src="https://i.imgur.com/gyDf328.jpg" alt="Picture of Josh Fernelius">
+            <img class="team-pic" src="https://i.imgur.com/3uMEw1Z.jpg" alt="Picture of April Gonzales">
+            <img class="team-pic" src="https://i.imgur.com/AgUP1nT.jpg" alt="Picture of Jae Sohn"></a>
+            <img class="team-pic" src="https://i.imgur.com/gyDf328.jpg" alt="Picture of Josh Fernelius">
         </div>
+</section>
 {% endblock %}

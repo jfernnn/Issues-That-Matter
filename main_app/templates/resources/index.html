@@ -5,29 +5,33 @@
 <h1>Resource List</h1>
 {% if resources|length > 0 %}
     {% for resource in resources %}
-        <div class="card">
-            <div class="resource-description">
-                <h3>{{ resource.description }}</h3>
-                <p>Posted By: {{ resource.user }} </p>
-                <!-- <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a> -->
+      <div class="card">
+    <div class="resource-description">
+        <h3>{{ resource.description }}</h3>
+        <p>Posted By: {{ resource.user }} </p>
+        <!-- <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a> -->
+    </div>
+    {% if resource.og_title == '' %}
+      <div class="image-container">
+        <p style="font-size:20px;text-align:center;">{{ resource.url }}</p>
+      </div>
+    {% else %}
+      <a class="a" href="{{ resource.url }}">
+        <div id="container">
+          {% if resource.og_title %}
+            <p>Title: {{ resource.og_title }}</p>
+            <div class="image-container">
+              {% if 'yout' in resource.url %}
+                <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              {% else %}
+                <img id="image" src="{{ resource.og_image }}">
+                <p>Description: {{ resource.og_description }}</p>
+              {% endif %}
             </div>
-                <a class="a" href="{{ resource.url }}">
-                    <div id="container">
-                        <p>Title: {{ resource.og_title }}</p>
-                        <div class="image-container">
-                            {% if  resource.og_type == 'video.other'%}
-                                <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            {% else %}
-                                <img id="image" src="{{ resource.og_image }}">
-                            {% endif %}
-                        </div>
-                    <p>Description: {{ resource.og_description }}</p>
-                    </div>
-                </a>
-            <a href="{% url 'detail' resource.id %}">
-                <button>Details</button>
-            </a>
+          {% endif %}
         </div>
+      </a>
+    {% endif %}
     {% endfor %}
 {% endif %}
 {% endblock %}
