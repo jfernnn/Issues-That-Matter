@@ -71,6 +71,8 @@ class ResourceCreate(CreateView, LoginRequiredMixin):
   def form_valid(self, form):
     if 'http' not in form.instance.url:
       form.instance.url = 'https://' + form.instance.url
+    else:
+      form.instance.url = form.instance.url
       og = OpenGraph(form.instance.url)
       form.instance.date = date.today()
       form.instance.og_title = og.title if 'title' in og else ''
