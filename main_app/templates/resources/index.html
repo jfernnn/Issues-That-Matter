@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load app_filters %}
-
 <h1>Resource List</h1>
   {% if resources|length > 0 %}
     {% for resource in resources %}
@@ -17,24 +16,25 @@
           </div>
         {% else %}
           <a class="a" href="{{ resource.url }}">
-          <div id="container">
-            {% if resource.og_title %}
-              <p>Title: {{ resource.og_title }}</p>
-              <div class="image-container">
-                {% if 'yout' in resource.url %}
-                  <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                {% else %}
-                  <img id="image" src="{{ resource.og_image }}">
-                  <p>Description: {{ resource.og_description }}</p>
-                {% endif %}
-              </div>
-            {% endif %}
-          </div>
+            <div id="container">
+              {% if resource.og_title %}
+                <p>Title: {{ resource.og_title }}</p>
+                <div class="image-container">
+                  {% if 'yout' in resource.url %}
+                    <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  {% else %}
+                    <img id="image" src="{{ resource.og_image }}">
+                    <p>Description: {{ resource.og_description }}</p>
+                  {% endif %}
+                </div>
+              {% endif %}
+            </div>
           </a>
         {% endif %}
+        <div class="detail-button">
+            <a href="/resources/{{resource.id}}"><button style="max-width: 100px;">Details</button></a>
+        </div>
       </div>
-      {% endfor %}
+    {% endfor %}
   {% endif %}
-
-
 {% endblock %}
