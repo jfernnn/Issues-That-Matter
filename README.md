@@ -2,9 +2,10 @@
 Sign up as a user to start collecting and commenting on resources about the social issues that matter to you!
 
 ## Screenshots
-<img src="" alt="">
-<img src="" alt="">
-<img src="" alt="">
+<img src="https://i.imgur.com/srn0z8x.png" alt="Screenshot of home page">
+<img src="https://i.imgur.com/K0SY5Rt.png" alt="Screenshot of the page to add a resource">
+<img src="https://i.imgur.com/xt0PA7b.png" alt="Screenshot of the page to add a topic with the topics listed in a column">
+<img src="https://i.imgur.com/EYQGSqC.png" alt="Screenshot of the page that lists all resources">
 
 ## Technologies
 - Postgresql
