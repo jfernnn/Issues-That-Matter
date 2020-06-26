@@ -140,10 +140,6 @@ input ::placeholder {
     width: 100%;
 }
 
-/* .image-container img {
-    height: 50%;
-} */
-
 footer {
     display: flex;
     align-items: center;
@@ -231,10 +227,6 @@ ul {
 img {
     /* width: 70%; */
     justify-content: center;
-}
-
-.container img {
-    /* width: 70%; */
 }
 
 .pics img {
@@ -333,6 +325,12 @@ section {
     display: flex;
     justify-content: space-around;
     width: 100%;
+}
+
+/* ---------this is the main home image---------- */
+#home-page > img {
+    width: 85%;
+    border-radius: 20px;
 }
 
 #mission, #who-we-are {
