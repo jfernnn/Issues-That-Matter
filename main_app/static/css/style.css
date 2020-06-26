@@ -68,6 +68,14 @@ button:hover {
 .search-bar input {
     line-height: 3vh;
     font-size: 2vh;
+    font-family: 'Open Sans Condensed', sans-serif;
+    padding: 0 10px;
+    
+}
+
+input ::placeholder {
+    font-family: 'Open Sans Condensed', sans-serif;
+
 }
 
 /* Dropdown Button */
@@ -77,6 +85,9 @@ button:hover {
     padding: 16px;
     font-size: 2vh;
     border: none;
+    border-radius: 0px;
+    width: 80px;
+    font-size: 30px;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -213,8 +224,7 @@ img {
 
 .pics img {
     border-radius: 10%;
-    display: inline;
-    width: 25%;
+    width: 20%;
 }
 
 .topic-page {
@@ -293,5 +303,33 @@ img {
 
 .topic-btn:hover {
     background-color: rgba(235, 235, 235, 0.856);
+}
+
+h3,h4 {
+    text-align: center;
+    margin: 30px;
+}
+
+section {
+    text-align: center;
+}
+
+.pics {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#mission, #who-we-are {
+    margin: 30px;
+}
+
+.about-line {
+    width: 75%;
+}
+
+.line {
+    display: flex;
+    justify-content: center;
 }
 

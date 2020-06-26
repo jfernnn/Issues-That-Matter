@@ -17,7 +17,7 @@
             </div>
         {% endfor %}
       {% else %}
-        <h5>No Topics :(</h5>
+        <h5>Add A Topic</h5>
       {% endif %}
     </div>
     <!-- Available topics will come after this line -->
@@ -66,13 +66,13 @@
           {% if resource.og_title %}
             <p>Title: {{ resource.og_title }}</p>
             <div class="image-container">
-              {% if 'youtube' in resource.url %}
+              {% if 'yout' in resource.url %}
                 <iframe class="iframe" src="{{ resource.url|video_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               {% else %}
                 <img id="image" src="{{ resource.og_image }}">
+                <p>Description: {{ resource.og_description }}</p>
               {% endif %}
             </div>
-            <p>Description: {{ resource.og_description }}</p>
           {% endif %}
         </div>
       </a>
