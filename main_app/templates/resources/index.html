@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load app_filters %}
+
 <h1>Resource List</h1>
   {% if resources|length > 0 %}
     {% for resource in resources %}
@@ -8,7 +9,6 @@
         <div class="resource-description">
           <h3>{{ resource.description }}</h3>
           <p>Posted By: {{ resource.user }} </p>
-          <!-- <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a> -->
         </div>
         {% if resource.og_title == '' %}
           <div class="image-container">
@@ -37,4 +37,5 @@
       </div>
     {% endfor %}
   {% endif %}
+
 {% endblock %}

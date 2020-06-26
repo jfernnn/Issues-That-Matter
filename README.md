@@ -21,3 +21,4 @@ Sign up as a user to start collecting and commenting on resources about the soci
 
 ## Next Steps
 - user ability to upvote or downvote a resource to effect the ordering
+- user ability to add photos or pdfs

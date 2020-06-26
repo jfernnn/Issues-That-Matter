@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.db.models import Q
-# from django.contrib.auth.decorators import login_required
-# from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
@@ -10,8 +10,6 @@ from .models import Resource, User, Comment, Topic
 from datetime import date
 from .forms import CommentForm
 from opengraph import OpenGraph
-
-# Create your views here.
 
 def home(request):
   return render(request, 'home.html')
@@ -21,10 +19,12 @@ def resources_index(request):
   topics = Topic.objects.all()
   return render(request, 'resources/index.html', {'resources': resources, 'topics': topics})
 
+@login_required
 def assoc_topic(request, resource_id, topic_id):
   Resource.objects.get(id=resource_id).topic.add(topic_id)
   return redirect('detail', resource_id=resource_id)
 
+@login_required
 def unassoc_topic(request, resource_id, topic_id):
   Resource.objects.get(id=resource_id).topic.remove(topic_id)
   return redirect('detail', resource_id=resource_id)
@@ -36,6 +36,7 @@ def resources_detail(request, resource_id):
   comments = Comment.objects.filter(resource=resource_id)
   return render(request, 'resources/detail.html', {'resource': resource, 'comments': comments, 'form': form, 'topics': topics})
 
+@login_required
 def add_comment(request, resource_id):
   form = CommentForm(request.POST)
   
@@ -53,12 +54,10 @@ def signup(request):
     form = UserCreationForm(request.POST)
     if form.is_valid():
       user = form.save()
-      #This is how we programmatically login
       login(request, user)
       return redirect('index')
     else:
       error_message = 'Invalid sign up - try again!'
-  # A bad POST or it's a GET
   form = UserCreationForm()
   context = {
     'form': form,
@@ -66,7 +65,7 @@ def signup(request):
   }
   return render(request, 'registration/signup.html', context)
 
-class ResourceCreate(CreateView):
+class ResourceCreate(CreateView, LoginRequiredMixin):
   model = Resource
   fields = ['description', 'url']
   def form_valid(self, form):
@@ -79,22 +78,21 @@ class ResourceCreate(CreateView):
     form.instance.user = self.request.user
     return super().form_valid(form)
     
-class ResourceUpdate(UpdateView):
+class ResourceUpdate(UpdateView, LoginRequiredMixin):
     model = Resource
     fields = ['description', 'url']
     
-class ResourceDelete(DeleteView):
+class ResourceDelete(DeleteView, LoginRequiredMixin):
     model = Resource
     success_url = '/resources/'
 
-class TopicCreate(CreateView):
+class TopicCreate(CreateView, LoginRequiredMixin):
   model = Topic
   fields = ['name']
   success_url = '/topics/create/'
   
   def form_valid(self, form):
     form.instance.name = form.instance.name.lower()
-    print(form.instance, '<----form instance')
     return super().form_valid(form)
   
   def get_context_data(self, **kwargs):
@@ -103,8 +101,7 @@ class TopicCreate(CreateView):
     context['topics'] = topics
     return context
 
-
-class TopicDelete(DeleteView):
+class TopicDelete(DeleteView, LoginRequiredMixin):
   model = Topic
   success_url = '/resources/'
 
@@ -117,9 +114,7 @@ def search(request):
     search = request.POST.get('search', None).lower()
     search_list = search.replace(' ', '').split(',')
     id_list = []
-    # resources =[]
     for item in search_list:
-
       topic = Topic.objects.filter(name=item.lower()).values_list('id', flat=True)
       if topic.exists():
         for item in topic:
