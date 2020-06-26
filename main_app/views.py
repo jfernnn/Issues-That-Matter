@@ -112,7 +112,13 @@ def topics_index(request):
 def search(request):
   if request.method == 'POST':
     search = request.POST.get('search', None).lower()
-    search_list = search.replace(' ', '').split(',')
+    search_list = []
+    if ',' in search:
+      temp_search = search.split(',')
+    else:
+      temp_search = [search]
+    for element in temp_search:
+      search_list.append(element.strip())
     id_list = []
     for item in search_list:
       topic = Topic.objects.filter(name=item.lower()).values_list('id', flat=True)

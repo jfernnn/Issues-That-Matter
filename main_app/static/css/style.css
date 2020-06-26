@@ -311,6 +311,11 @@ section {
     width: 100%;
 }
 
+.pic-names {
+    display: flex;
+    justify-content: space-around;
+}
+
 #home-page > img {
     width: 85%;
     border-radius: 20px;
