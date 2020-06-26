@@ -135,7 +135,7 @@ input ::placeholder {
 .image-container {
     display: flex;
     justify-content: center;
-    height: 50vh;
+    flex-direction: column;
 }
 
 footer {
@@ -240,6 +240,14 @@ img {
     grid-area: form;
 }
 
+.resource-form-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
 @media screen and (min-width: 700px) {
     .detail-topics {
         display: grid;
@@ -252,9 +260,9 @@ img {
 
     .topic-page {
         display: grid;
-        grid-template-columns: 1fr 2fr 2fr;
+        grid-template-columns: 2fr 2fr;
         grid-template-areas: 
-        " . form topic";
+        "form topic";
     }
     .resource-form-container {
         width: 100%;
@@ -268,19 +276,13 @@ img {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
         grid-template-rows: auto;
     }
-}
-
-@media screen and (min-width: 1200px) {
-    /* #topic-form {
-        display: flex;
-        justify-content: flex-end;
-    } */
     .topic-column {
         grid-area: topic;
         display: flex;
         justify-content: center;
     }
 }
+
 
 .btn {
     background-color: rgba(211, 211, 211, .7);
@@ -325,6 +327,11 @@ section {
     margin: 30px;
 }
 
+#home-page > img {
+    width: 85%;
+    border-radius: 20px;
+}
+
 .about-line {
     width: 75%;
 }
@@ -350,16 +357,18 @@ section {
 
 iframe {
     width: 100%;
-    height: 100%;
+    height: 400px;
 }
 
 #image {
     width: 100%;
+    height: 100%;
 }
 
 textarea {
    resize: none; 
-   height: 50px;
+   height: 25px;
+   font-size: 18px;
 }
 
 .comment-card {
@@ -370,4 +379,27 @@ textarea {
     display: flex;
     flex-direction: column;
     font-size: 3vh;
+}
+
+.resource-description h3 {
+    margin: 0;
+}
+
+.detail-button {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#fist-img {
+    height: 70px;
+    width: 40px;
+}
+
+.message {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }

@@ -6,8 +6,8 @@
   <div>
     <h3>Resource Topics</h3>
     <hr><br>
-    <div class="detail-topics">
-      {% if resource.topic.count %}
+    {% if resource.topic.count %}
+      <div class="detail-topics">
         {% for topic in resource.topic.all %}
             <div class="each-topic">
               <form action="{% url 'unassoc_topic' resource.id topic.id %}" method="post">
@@ -16,16 +16,16 @@
               </form>
             </div>
         {% endfor %}
-      {% else %}
-        <h5>Add A Topic</h5>
-      {% endif %}
-    </div>
+      </div>
+    {% else %}
+      <div class="message"><h5>Add A Topic</h5></div>
+    {% endif %}
+
     <!-- Available topics will come after this line -->
-    <br><br>
     <h3>Available topics</h3>
     <hr><br>
-    <div class="detail-topics">
-      {% if topics.count %}
+    {% if topics.count %}
+      <div class="detail-topics">
         {% for topic in topics.all %}
         <div class="each-topic">
             <form action="{% url 'assoc_topic' resource.id topic.id %}" method="post">
@@ -34,10 +34,10 @@
             </form>
         </div>
         {% endfor %}
-      {% else %}
-        <h5>{{resource.name}} Already Has All Topics Available</h5>
-      {% endif %}
-    </div>
+      </div>
+    {% else %}
+      <div class="message"><h5>Already Has All Topics Available</h5></div>
+    {% endif %}
   </div>
 {% else %}
     {% if resource.topic.count %}
