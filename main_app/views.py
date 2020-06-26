@@ -89,7 +89,7 @@ class ResourceDelete(DeleteView):
 class TopicCreate(CreateView):
   model = Topic
   fields = ['name']
-  success_url = '/resources/'
+  success_url = '/topics/create/'
   
   def form_valid(self, form):
     form.instance.name = form.instance.name.lower()
