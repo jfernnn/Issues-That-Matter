@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load app_filters %}
+
 <h1>Detail</h1>
 {% if user == resource.user %}
   <div>
@@ -20,8 +21,6 @@
     {% else %}
       <div class="message"><h5>Add A Topic</h5></div>
     {% endif %}
-
-    <!-- Available topics will come after this line -->
     <h3>Available topics</h3>
     <hr><br>
     {% if topics.count %}
@@ -49,12 +48,10 @@
         {% endfor %}
     {% endif %}
 {% endif %}
-
 <div class="card">
     <div class="resource-description">
         <h3>{{ resource.description }}</h3>
         <p>Posted By: {{ resource.user }} </p>
-        <!-- <a href="{{ resource.url }}"><small>{{ resource.url }}</small></a> -->
     </div>
     {% if resource.og_title == '' %}
       <div class="image-container">
@@ -84,8 +81,6 @@
       </div>
     {% endif %}
 </div>
-
-<!-- to here -->
 <h2>Add Comment</h2>
     <form action="{% url 'add_comment' resource.id %}" method="post">
         {% csrf_token %}

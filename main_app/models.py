@@ -5,8 +5,6 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from datetime import date
 
-
-# Create your models here.
 class Topic(models.Model):
     name = models.CharField(max_length=50)
 
@@ -39,10 +37,8 @@ class Comment(models.Model):
     comment = models.TextField(max_length=1000)
     resource = models.ForeignKey(Resource, on_delete=models.CASCADE)
     user = models.CharField(max_length=150)
-    # created_on = models.DateTimeField(auto_now_add=True)
     date = models.DateField('comment date')
-    # class Meta:
-    #     ordering = ['-created_on']
+
     class Meta:
         ordering = ['-date']
 
